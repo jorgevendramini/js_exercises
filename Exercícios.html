@@ -103,6 +103,20 @@ console.log(media);
 alert("Os 10 numeros escolhidos foram: " + tenRandNum.join(" - "));
 alert("A media desses numeros e: " + media);
 
+	
+//Exercício 5
+
+let word = prompt("Digite uma palavra para verificar se ela e um palindromo:");
+let wordSplit = word.split("");
+let reverse = [];
+let temp;
+
+do{
+	temp = wordSplit.pop();
+  	reverse.push(temp);
+}while(wordSplit.length > 0)
+
+word === reverse.join("") ? alert("A palavra e Palindromo!") : alert("A palavra nao e um palindromo!");
 
 
 
