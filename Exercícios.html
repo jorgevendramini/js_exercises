@@ -67,6 +67,7 @@ console.log(people);
 console.log(older);
 alert("A pessoa mais velha dentre as cinco é:" + older);
 
+
     
 //Exercício 3
     
@@ -77,8 +78,30 @@ do{
 }while(isNaN(number));
 
 number % 2 === 0 ? alert("o número é par!") : alert("o número é ímpar!");
+
 	
 
+//Exercício 4
+	
+let tenRandNum = [];
+let media = 0;
+
+for (let i = 0; i < 10; i++) {
+  let random = Math.floor((Math.random() * 100) + 1);
+  tenRandNum.push(random);
+}
+
+for(let i = 0; i < 10; i++){
+	media += tenRandNum[i];
+  if (i === 9){
+  	media = media/(i+1);
+  }
+}
+
+console.log(tenRandNum);
+console.log(media);
+alert("Os 10 numeros escolhidos foram: " + tenRandNum.join(" - "));
+alert("A media desses numeros e: " + media);
 
 
 
