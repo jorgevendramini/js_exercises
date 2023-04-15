@@ -117,8 +117,52 @@ do{
 }while(wordSplit.length > 0)
 
 word === reverse.join("") ? alert("A palavra e Palindromo!") : alert("A palavra nao e um palindromo!");
+	
+	
+	
 
+// JOGO DA FORCA
 
+let palavraSecretaArray = prompt("Digite a palavra secreta:").toUpperCase().split("");
+let tamanhoPalavra = palavraSecretaArray.length;
+let letrasJaChutadas = [];
+let letrasErradas = [];
+let letrasCorretas = [];
+let underlineSecretWord = [];
+let numberOfTries = 0;
+
+for(let i = 0; i < tamanhoPalavra;i++){
+    underlineSecretWord.push(" _ ");
+}
+
+while(underlineSecretWord !== palavraSecretaArray || numberOfTries > 6){
+
+    let input = prompt("Palavra Secreta: " + underlineSecretWord + "\n" + 
+    "Letras já chutadas: " + letrasJaChutadas + "\n" + 
+    "Letras Erradas: " + letrasErradas + "\n" + 
+    "Letras corretas: " + letrasCorretas + "\n" + 
+    "Número de tentativas: " + numberOfTries + "\n" +
+    "Digite uma letra para adivinhar a palavra: ").toUpperCase();
+
+    if(input.length !== 1){
+        alert("Por favor, digite apenas uma letra!")
+    } else if(letrasJaChutadas.indexOf(input.charAt(0)) !== -1){
+        alert("Essa letra já foi chutada, tente outra!")
+    } else {
+        for(let i = 0;i < palavraSecretaArray.length;i++){
+            if(palavraSecretaArray[i] === input){
+                letrasJaChutadas.push(input.charAt(0));
+                letrasCorretas.push(input.charAt(0));
+            } else {
+                letrasErradas.push(input.charAt(0));
+                numberOfTries++;
+            }
+        }
+    }
+
+}
+
+console.log(underlineSecretWord);
 
 </script>
 
