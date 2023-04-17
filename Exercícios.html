@@ -131,36 +131,50 @@ let letrasCorretas = [];
 let underlineSecretWord = [];
 let numberOfTries = 0;
 
-for(let i = 0; i < tamanhoPalavra;i++){
-    underlineSecretWord.push(" _ ");
+for (let i = 0; i < tamanhoPalavra; i++) {
+  underlineSecretWord.push(" _ ");
 }
 
-while(underlineSecretWord !== palavraSecretaArray || numberOfTries > 6){
+while (underlineSecretWord.join("") !== palavraSecretaArray.join("") && numberOfTries < 6) {
 
-    let input = prompt("Palavra Secreta: " + underlineSecretWord + "\n" + 
-    "Letras já chutadas: " + letrasJaChutadas + "\n" + 
-    "Letras Erradas: " + letrasErradas + "\n" + 
-    "Letras corretas: " + letrasCorretas + "\n" + 
-    "Número de tentativas: " + numberOfTries + "\n" +
-    "Digite uma letra para adivinhar a palavra: ").toUpperCase();
+  let input = prompt(`Palavra Secreta: ${underlineSecretWord} \n Letras já chutadas: ${letrasJaChutadas} \n Letras Erradas: ${letrasErradas} \n Letras corretas: ${letrasCorretas} \n Número de tentativas: ${numberOfTries} \n Digite uma letra para adivinhar a palavra: `).toUpperCase();
 
-    if(input.length !== 1){
-        alert("Por favor, digite apenas uma letra!")
-    } else if(letrasJaChutadas.indexOf(input.charAt(0)) !== -1){
-        alert("Essa letra já foi chutada, tente outra!")
-    } else {
-        for(let i = 0;i < palavraSecretaArray.length;i++){
-            if(palavraSecretaArray[i] === input){
-                letrasJaChutadas.push(input.charAt(0));
-                letrasCorretas.push(input.charAt(0));
-            } else {
-                letrasErradas.push(input.charAt(0));
-                numberOfTries++;
-            }
+  if (input.length !== 1) {
+    alert("Por favor, digite apenas uma letra!")
+  } else if (letrasJaChutadas.indexOf(input.charAt(0)) !== -1) {
+    alert("Essa letra já foi chutada, tente outra!")
+  } else {
+    let found = false;
+    for (let i = 0; i < palavraSecretaArray.length; i++) {
+      if (palavraSecretaArray[i] === input) {
+        if (!letrasJaChutadas.includes(input)) {
+          letrasJaChutadas.push(input);
         }
+        if (!letrasCorretas.includes(input)) {
+          letrasCorretas.push(input);
+        }
+        underlineSecretWord[i] = input;
+        found = true;
+      }
     }
-
+    if (!found) {
+      if (!letrasJaChutadas.includes(input)) {
+        letrasJaChutadas.push(input);
+      }
+      if (!letrasErradas.includes(input)) {
+        letrasErradas.push(input);
+      }
+      numberOfTries++;
+    }
+  }
 }
+
+if(underlineSecretWord.join("") === palavraSecretaArray.join("")){
+	alert(`Parabéns, você descobriu a palavra secreta: ${palavraSecretaArray.join("")}`);
+} else {
+	alert("Você perdeu. Ultrapassou o limite de tentativas, boa sorte na próxima!");
+}
+
 
 console.log(underlineSecretWord);
 
