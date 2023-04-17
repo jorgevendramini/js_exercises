@@ -121,39 +121,63 @@ let letrasCorretas = [];
 let underlineSecretWord = [];
 let numberOfTries = 0;
 
+
 //Cria a palavra secreta utilizando _
 for (let i = 0; i < tamanhoPalavra; i++) {
   underlineSecretWord.push(" _ ");
 }
 
 
+
 //Código principal que só termina com o jogador ganhando ou perdendo
 //Ganha quando a palavra secreta for igual a palavra adivinha
 //Perde se ultrapassar o número de tentativas
+
 while (underlineSecretWord.join("") !== palavraSecretaArray.join("") && numberOfTries < 6) {
+
+
 
 //Texto principal
   let input = prompt(`Palavra Secreta: ${underlineSecretWord} \n Letras já chutadas: ${letrasJaChutadas} \n Letras Erradas: ${letrasErradas} \n Letras corretas: ${letrasCorretas} \n Número de tentativas: ${numberOfTries} \n Digite uma letra para adivinhar a palavra: `).toUpperCase();
 
   if (input.length !== 1) {   //Verifica se digitou mais de uma letra
     alert("Por favor, digite apenas uma letra!")
-  } else if (letrasJaChutadas.indexOf(input.charAt(0)) !== -1) { //Verifica se digitou uma letra igual 
+	  
+//Verifica se digitou uma letra igual	
+  } else if (letrasJaChutadas.indexOf(input.charAt(0)) !== -1) { 
     alert("Essa letra já foi chutada, tente outra!")
-  } else { //senão executa a verificação da letra
-    let found = false;  //variável para checagem se a letra é correta ou não
-    for (let i = 0; i < palavraSecretaArray.length; i++) {  //loop para verificar cada letra da palavra secreta
-      if (palavraSecretaArray[i] === input) {  // se a letra é igual a uma das letras da palavra secreta:
+
+//senão executa a verificação da letra
+  } else {
+	  
+//variável para checagem se a letra é correta ou não	  
+    let found = false;
+
+//loop para verificar cada letra da palavra secreta
+    for (let i = 0; i < palavraSecretaArray.length; i++) { 
+
+// se a letra é igual a uma das letras da palavra secreta:
+      if (palavraSecretaArray[i] === input) { 
         if (!letrasJaChutadas.includes(input)) {  
           letrasJaChutadas.push(input);
-        }  // verifica se a letra já foi inserida antes mais por conta de um bug no loop que repete a palavra varias vezes
+        }
+	  
+// verifica se a letra já foi inserida antes mais por conta de um bug no loop que repete a palavra varias vezes
         if (!letrasCorretas.includes(input)) {
           letrasCorretas.push(input);
         }
-        underlineSecretWord[i] = input; //se a letra bate, insere a letra inves do underline
-        found = true; //apenas para não entrar no if de letras erradas, dizendo que a letra está correta
+	    
+//se a letra bate, insere a letra inves do underline
+        underlineSecretWord[i] = input; 
+	      
+//apenas para não entrar no if de letras erradas, dizendo que a letra está correta
+        found = true; 
       }
     }
-    if (!found) { //se a lerta está errada, insere ela nos arrays de já chutadas e erradas e aumenta o contador de tentativas
+	  
+
+//se a letra está errada, insere ela nos arrays de já chutadas e erradas e aumenta o contador de tentativas	  
+    if (!found) { 
       if (!letrasJaChutadas.includes(input)) {
         letrasJaChutadas.push(input);
       }
@@ -165,10 +189,14 @@ while (underlineSecretWord.join("") !== palavraSecretaArray.join("") && numberOf
   }
 }
 
+
+
 if(underlineSecretWord.join("") === palavraSecretaArray.join("")){
-	alert(`Parabéns, você descobriu a palavra secreta: ${palavraSecretaArray.join("")}`); //se palavra correta
+	//se está correta, fim de jogo  
+	alert(`Parabéns, você descobriu a palavra secreta: ${palavraSecretaArray.join("")}`); 
 } else {
-	alert("Você perdeu. Ultrapassou o limite de tentativas, boa sorte na próxima!"); //se ultrapassar tentativas
+	//se ultrapassar tentativas
+	alert("Você perdeu. Ultrapassou o limite de tentativas, boa sorte na próxima!"); 
 }
 
 
