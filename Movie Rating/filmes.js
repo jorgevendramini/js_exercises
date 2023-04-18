@@ -4,25 +4,28 @@ Crie uma função que permita ao usuário dar uma nota a um filme, informando o 
 A função deve atualizar o array de notas do filme correspondente. 
 Crie outra função que calcule a média das notas de um filme, informando o nome do filme.*/
 
-const ratingStars = [...document.getElementsByClassName("star")];
 
-function executeRating(stars) {
-  const starClassActive = "star star-filled";
-  const starClassInactive = "star star-empty";
-  const starsLength = stars.length;
-  let i;
 
-  stars.map((star) => {
-    star.onclick = () => {
-      i = stars.indexOf(star);
+const stars = document.querySelectorAll('.star');
+const rating = document.querySelectorAll('.rating');
+const media = document.querySelectorAll('.mediaFilme');
 
-      if (star.className === starClassInactive) {
-        for (i; i >= 0; --i) stars[i].className = starClassActive;
-      } else {
-        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
-      }
-    };
+stars.forEach((star, index) => {
+  star.addEventListener('mouseover', () => {
+    for(let i = 0; i <= index; i++){
+      stars[i].classList.add('active');
+    }
   });
-}
 
-executeRating(ratingStars);
+  star.addEventListener('mouseout', () => {
+    for(let i = 0; i <= index; i++){
+      stars[i].classList.remove('active');
+    }
+  });
+
+  star.addEventListener('click', () => {
+    rating[index].style.opacity = '1';
+    media[index].style.opacity = '0.8';
+  });
+});
+
