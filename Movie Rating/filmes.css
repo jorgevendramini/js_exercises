@@ -1,0 +1,76 @@
+/* responsividade */
+
+@media screen and (max-width: 500px) {
+    .coluna {
+      width: 100%;
+    }
+  }
+
+body {
+    background-color: lightblue;
+}
+
+/* Imagens */
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10%;
+}
+
+.coluna{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    padding: 5px;
+}
+
+.linha {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Escrita abaixo das imagens */
+
+.mediaFilme {
+    text-align: center;
+    color:rebeccapurple;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+/* Estrelas pontuação */
+
+.image-wrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.rating {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.star {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url(./imagens/star-empty.png);
+    background-size: contain;
+    cursor: pointer;
+}
+
+.star:hover, .star.active {
+    background-image: url(./imagens/star-filled.png);
+}
+
+.image-wrapper:hover .rating{
+    opacity: 1;
+}
+
+.image-wrapper:hover .imagemFilme{
+    opacity: 0.8;
+}
