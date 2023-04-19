@@ -4,11 +4,13 @@ Crie uma função que permita ao usuário dar uma nota a um filme, informando o 
 A função deve atualizar o array de notas do filme correspondente. 
 Crie outra função que calcule a média das notas de um filme, informando o nome do filme.*/
 
+//https://javascript.info/
 
 
 const stars = document.querySelectorAll('.star');
-const rating = document.querySelectorAll('.rating');
 const media = document.querySelectorAll('.mediaFilme');
+
+let rating = [0,0,0,0];
 
 stars.forEach((star, index) => {
   star.addEventListener('mouseover', () => {
@@ -19,13 +21,40 @@ stars.forEach((star, index) => {
 
   star.addEventListener('mouseout', () => {
     for(let i = 0; i <= index; i++){
-      stars[i].classList.remove('active');
+      if(!star.classList.contains('locked')){
+        stars[i].classList.remove('active');
+      }
     }
   });
 
   star.addEventListener('click', () => {
-    rating[index].style.opacity = '1';
-    media[index].style.opacity = '0.8';
+    for(let i = 0; i <= index; i++){
+      stars[i].classList.add('locked');
+    }
+      rating[index] = parseInt(this.getAttribute('data-rating'));
+      setActiveRating();
   });
+
 });
+
+setActiveRating = () => {
+  stars.forEach((star, index) => {
+      if(parseInt(star.getAttribute('data-rating')) <= rating[index]){
+        star.classList.add('active');
+        console.log(rating);
+      } else {
+        star.classList.remove('active');
+      }
+
+      star.addEventListener('click', () => {
+        if(star.classList.contains('active')){
+          star.classList.remove('active');
+          rating[index] = 0;
+        } else {
+          star.classList.add('active');
+          rating[index] = parseInt(star.getAttribute('data-rating'));
+        }
+      });
+  });
+}
 
