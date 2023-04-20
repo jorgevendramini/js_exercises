@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /* Suponha que você esteja criando um programa de gerenciamento de estoque para uma loja.
+O programa deve permitir que o usuário adicione novos itens ao estoque, remova itens do estoque e exiba uma lista
+dos itens existentes no estoque.
+Você pode implementar o programa usando um array para armazenar os itens do estoque. O usuário pode adicionar
+um novo item usando o método push(), remover um item existente usando o método splice() 
+e exibir uma lista dos itens existentes usando o método forEach();*/
+
+let estoque = [];
+
+let option;
+
+while(true){
+    option = parseInt(prompt(`1-Adicionar itens ao estoque \n 2-Remover itens do estoque \n 3-Listar itens do Estoque \n 4-Sair`));
+
+    if(option == 1)
+    {
+        let novoItem = prompt(`Digite o item a ser adicionado:`);
+        estoque.push(novoItem);
+        alert(`O item adicionado é ${novoItem}`);
+    } 
+    else if (option == 2)
+    {
+        let itemRemovido = prompt(`Digite o item a ser removido:`);
+
+        const index = estoque.indexOf(itemRemovido);
+        
+        if(index !== -1){
+            estoque.splice(index, 1);
+            alert(`O item removido foi ${itemRemovido}`);
+        } else {
+            alert(`Este item não tem no estoque`);
+        }
+        
+    }
+    else if (option == 3)
+    {
+        alert(estoque);
+    } 
+    else if(option == 4)
+    {
+       break;
+    }    
+}
+
+
+
+</script>
+</body>
+</html>

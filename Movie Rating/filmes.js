@@ -21,40 +21,25 @@ stars.forEach((star, index) => {
 
   star.addEventListener('mouseout', () => {
     for(let i = 0; i <= index; i++){
-      if(!star.classList.contains('locked')){
+      if(!star.classList.contains('lock')){
         stars[i].classList.remove('active');
       }
     }
   });
 
   star.addEventListener('click', () => {
-    for(let i = 0; i <= index; i++){
-      stars[i].classList.add('locked');
-    }
-      rating[index] = parseInt(this.getAttribute('data-rating'));
-      setActiveRating();
-  });
+      if(!star.classList.contains('lock')){
+        for(let i = 0; i <= index; i++){
+          stars[i].classList.add('lock');
+        }
+      } else {
+        for(let i = 0; i <= index; i++){
+          stars[i].classList.remove('lock');
+        }
+      }
+  }); 
 
 });
 
-setActiveRating = () => {
-  stars.forEach((star, index) => {
-      if(parseInt(star.getAttribute('data-rating')) <= rating[index]){
-        star.classList.add('active');
-        console.log(rating);
-      } else {
-        star.classList.remove('active');
-      }
 
-      star.addEventListener('click', () => {
-        if(star.classList.contains('active')){
-          star.classList.remove('active');
-          rating[index] = 0;
-        } else {
-          star.classList.add('active');
-          rating[index] = parseInt(star.getAttribute('data-rating'));
-        }
-      });
-  });
-}
 
