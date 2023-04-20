@@ -10,36 +10,40 @@ Crie outra função que calcule a média das notas de um filme, informando o nom
 const stars = document.querySelectorAll('.star');
 const media = document.querySelectorAll('.mediaFilme');
 
-let rating = [0,0,0,0];
+let rating = [0, 0, 0, 0];
 
 stars.forEach((star, index) => {
   star.addEventListener('mouseover', () => {
-    for(let i = 0; i <= index; i++){
+    for (let i = 0; i <= index; i++) {
       stars[i].classList.add('active');
     }
   });
 
   star.addEventListener('mouseout', () => {
-    for(let i = 0; i <= index; i++){
-      if(!star.classList.contains('lock')){
+    for (let i = 0; i <= index; i++) {
+      if (!star.classList.contains('lock')) {
         stars[i].classList.remove('active');
       }
     }
   });
 
   star.addEventListener('click', () => {
-      if(!star.classList.contains('lock')){
-        for(let i = 0; i <= index; i++){
-          stars[i].classList.add('lock');
-        }
-      } else {
-        for(let i = 0; i <= index; i++){
-          stars[i].classList.remove('lock');
-        }
+    if (star.classList.contains('lock')) {
+	stars.forEach((star, index) => {
+        star.classList.remove('lock');
+        star.classList.remove('active');
+      })
+    } else {
+      for (let i = 0; i <= index; i++) {
+        stars[i].classList.add('lock');
       }
-  }); 
+    }
+  });
 
 });
 
-
-
+/*      stars.forEach((star, index) => {
+        star.classList.remove('lock');
+        star.classList.remove('active');
+      })
+*/
